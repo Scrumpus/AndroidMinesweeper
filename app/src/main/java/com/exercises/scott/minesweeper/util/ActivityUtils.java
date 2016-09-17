@@ -1,0 +1,19 @@
+package com.exercises.scott.minesweeper.util;
+
+
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+
+/**
+ * Created by scott on 9/4/16.
+ */
+public class ActivityUtils {
+
+    public static void addFragmentToActivity(FragmentManager fragmentManager,
+                                             Fragment fragment, int frameId) {
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.add(frameId, fragment);
+        transaction.commit();
+    }
+}

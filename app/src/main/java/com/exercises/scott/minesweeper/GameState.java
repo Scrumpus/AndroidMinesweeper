@@ -1,7 +1,6 @@
 package com.exercises.scott.minesweeper;
 
 import android.content.res.Configuration;
-import android.util.Log;
 
 import java.util.Arrays;
 import java.util.Random;
@@ -52,7 +51,7 @@ public class GameState {
 
         Cell cell = cells[y][x];
         cell.setRevealed(true);
-        --numRevealed;
+        ++numRevealed;
 
         if (cell.isMine()) {
             if (wasClicked) {

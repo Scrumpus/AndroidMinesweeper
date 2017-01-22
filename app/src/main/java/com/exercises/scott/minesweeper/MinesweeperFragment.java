@@ -1,5 +1,6 @@
 package com.exercises.scott.minesweeper;
 
+import android.app.Activity;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,13 +10,14 @@ import android.support.v4.hardware.display.DisplayManagerCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import com.exercises.scott.minesweeper.util.DimensionUtils;
 
 import org.w3c.dom.Text;
 
@@ -42,10 +44,13 @@ public class MinesweeperFragment extends Fragment implements MinesweeperContract
         RecyclerView rView = (RecyclerView) root.findViewById(R.id.minesweeper_recyclerview);
 
 
-        int width = 10;
-        Log.i("YAS", "" + width);
 
-        mPresenter.createNewGame(width);
+        DisplayMetrics displaymetrics = new DisplayMetrics();
+        ((Activity) getContext()).getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+        int width = DimensionUtils.getCellDimen(displaymetrics.widthPixels);
+        int height = DimensionUtils.getCellDimen(displaymetrics.heightPixels);
+
+        mPresenter.createNewGame(height, width);
         mCells = mPresenter.getCells();
         rView.setLayoutManager(new GridLayoutManager(getContext(), width));
         mAdapter = new MineAdapter();
@@ -90,7 +95,7 @@ public class MinesweeperFragment extends Fragment implements MinesweeperContract
 
         @Override
         public int getItemCount() {
-            return 100;
+            return mCells.size();
         }
     }
 

@@ -21,8 +21,10 @@ public class MinesweeperPresenter implements MinesweeperContract.Presenter {
 
     @Override
     public void clickMine(int pos) {
-        int y = pos / mGameState.getWidth();
-        int x = pos % mGameState.getWidth();
+        int y = (pos - 1) / mGameState.getWidth();
+        int x = (pos) % mGameState.getWidth();
+
+        if (x == 0) ++y;
 
         mGameState.revealMine(y, x, new GameState.ClickMineCallback() {
             @Override
@@ -56,5 +58,11 @@ public class MinesweeperPresenter implements MinesweeperContract.Presenter {
        if (GameState.getInstance() == null) {
            GameState.newGame(10, width, width);
        }
+    }
+
+    public void createNewGame(int height, int width) {
+        if (GameState.getInstance() == null) {
+            GameState.newGame(50, height, width);
+        }
     }
 }

@@ -15,5 +15,6 @@ public interface MinesweeperContract {
         void clickMine(int pos);
         List<Cell> getCells();
         void createNewGame(int width);
+        void createNewGame(int width, int height);
     }
 }

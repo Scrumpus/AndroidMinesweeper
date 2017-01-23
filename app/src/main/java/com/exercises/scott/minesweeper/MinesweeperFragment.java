@@ -68,6 +68,7 @@ public class MinesweeperFragment extends Fragment implements MinesweeperContract
         public MineHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.mine_layout, null);
             MineHolder holder = new MineHolder(view);
+            holder.setIsRecyclable(false);
             return holder;
         }
 
